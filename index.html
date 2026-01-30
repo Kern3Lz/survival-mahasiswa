@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survival Mahasiswa: Semester Sanity</title>
+    <meta
+      name="description"
+      content="Card Battle RPG game tentang perjuangan mahasiswa menuju wisuda"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="particles"></div>
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="screen active">
+      <div class="login-container">
+        <span class="logo-icon">🎓</span>
+        <h1 class="game-title">SURVIVAL MAHASISWA</h1>
+        <p class="game-subtitle">Semester Sanity Edition</p>
+
+        <div class="login-form">
+          <div id="auth-message" class="auth-message"></div>
+          <div class="form-group">
+            <input type="text" id="login-username" placeholder="Username" />
+          </div>
+          <div class="form-group">
+            <input type="password" id="login-password" placeholder="Password" />
+          </div>
+          <div class="login-buttons">
+            <button id="btn-login" class="menu-btn primary">Login</button>
+            <button id="btn-register" class="menu-btn">Register</button>
+          </div>
+          <div class="divider"><span>atau</span></div>
+          <button id="btn-guest" class="menu-btn guest-btn">
+            <span class="btn-icon">👤</span> Main sebagai Guest
+          </button>
+          <p class="guest-note">
+            ⚠️ Perhatian: Progress Guest akan hilang jika browser ditutup atau
+            cache dihapus.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN MENU -->
+    <div id="main-menu" class="screen">
+      <div class="menu-container">
+        <span class="logo-icon">🧑‍🎓</span>
+        <h1 class="game-title">MAIN MENU</h1>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+          <div class="status-row">
+            <span id="level-display">Level 1</span>
+            <div class="xp-bar-container">
+              <div id="xp-bar-fill" class="xp-bar-fill"></div>
+              <span id="xp-text" class="xp-text">0/200 XP</span>
+            </div>
+          </div>
+          <div class="status-row">
+            <span id="sanity-display">❤️ 50</span>
+            <span id="stamina-display">⚡⚡⚡</span>
+          </div>
+        </div>
+
+        <!-- User Info -->
+        <div id="user-info" class="user-info">
+          <span class="user-name">👤 Guest</span>
+          <span class="user-level">⭐ Lv.1</span>
+        </div>
+
+        <!-- Menu Buttons -->
+        <div class="menu-buttons">
+          <button id="btn-play" class="menu-btn primary">
+            <span class="btn-icon">📚</span> Mulai Kuliah
+          </button>
+          <button id="btn-deck" class="menu-btn">
+            <span class="btn-icon">🃏</span> Indeks Kartu
+          </button>
+          <button id="btn-how-to-play" class="menu-btn">
+            <span class="btn-icon">❓</span> Cara Main
+          </button>
+          <button id="btn-logout" class="menu-btn logout-btn">
+            <span class="btn-icon">🚪</span> Logout
+          </button>
+        </div>
+
+        <div class="version-info">v3.0 - 8 Semester Card Battle</div>
+      </div>
+    </div>
+
+    <!-- BATTLE SCREEN -->
+    <div id="battle-screen" class="screen">
+      <div class="battle-container">
+        <div class="battle-header">
+          <div class="header-spacer"></div>
+          <div class="stage-info">
+            <span id="current-stage-name">Semester 1: Pengenalan</span>
+            <span id="battle-count">Ronde 1/5</span>
+          </div>
+          <button
+            id="btn-drop-out"
+            class="drop-out-btn-header"
+            title="Menyerah dan kembali ke menu"
+          >
+            😞 Bad Mood
+          </button>
+        </div>
+
+        <div class="battle-arena">
+          <div class="combatant player">
+            <div class="combatant-sprite" id="player-sprite">🧑‍🎓</div>
+            <div class="combatant-info">
+              <h3 id="player-battle-name">Player</h3>
+              <div class="stat-bars">
+                <div class="stat-bar sanity-bar">
+                  <span class="stat-label">Sanity</span>
+                  <div class="bar-container">
+                    <div class="bar-fill" id="player-sanity-bar"></div>
+                    <span class="bar-text" id="player-sanity-text">50/50</span>
+                  </div>
+                </div>
+              </div>
+              <div class="status-effects" id="player-status"></div>
+            </div>
+          </div>
+
+          <div class="vs-divider">
+            <span class="vs-text">VS</span>
+          </div>
+
+          <div class="combatant enemy">
+            <div class="combatant-sprite enemy-sprite" id="enemy-sprite">
+              👹
+            </div>
+            <div class="combatant-info">
+              <h3 id="enemy-battle-name">Enemy</h3>
+              <div class="stat-bars">
+                <div class="stat-bar enemy-bar">
+                  <span class="stat-label">HP</span>
+                  <div class="bar-container">
+                    <div class="bar-fill" id="enemy-hp-bar"></div>
+                    <span class="bar-text" id="enemy-hp-text">30/30</span>
+                  </div>
+                </div>
+              </div>
+              <p id="enemy-type" class="enemy-type">Tipe: Normal</p>
+              <div class="status-effects" id="enemy-status"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="battle-log" id="battle-log"></div>
+
+        <div class="card-battle-ui">
+          <div class="deck-info">
+            <div class="turn-indicator" id="turn-indicator">Giliran Kamu!</div>
+            <div class="energy-display" id="energy-display">⚡⚡⚡ 3/3</div>
+            <button id="btn-end-turn" class="end-turn-btn">End Turn →</button>
+          </div>
+          <div class="card-hand" id="card-hand"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VICTORY SCREEN -->
+    <div id="victory-screen" class="screen">
+      <div class="result-container victory">
+        <div class="result-icon">🏆</div>
+        <h2 class="result-title">MENANG!</h2>
+        <p class="result-message" id="victory-message">Ronde Clear!</p>
+        <div class="rewards-section">
+          <h4>Rewards:</h4>
+          <div class="rewards-list" id="rewards-list"></div>
+        </div>
+        <div class="result-buttons">
+          <button id="btn-next-round" class="menu-btn primary">
+            Lanjut Ronde →
+          </button>
+          <button id="btn-back-menu" class="menu-btn">
+            🏠 Kembali ke Kampus
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEFEAT SCREEN -->
+    <div id="defeat-screen" class="screen">
+      <div class="result-container defeat">
+        <div class="result-icon">💀</div>
+        <h2 class="result-title">DROP OUT!</h2>
+        <p class="result-message" id="defeat-message">Sanity habis...</p>
+        <div class="result-buttons">
+          <button id="btn-retry" class="menu-btn">🔄 Ulang Semester</button>
+          <button id="btn-back-menu-defeat" class="menu-btn primary">
+            🏠 Menu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMESTER SELECT MODAL -->
+    <div id="semester-select-modal" class="modal">
+      <div class="modal-content large-modal">
+        <button class="modal-close" id="close-semester-select">✕</button>
+        <h2>📚 Pilih Semester</h2>
+        <p class="modal-subtitle">
+          Selesaikan 5 ronde per semester untuk melanjutkan
+        </p>
+        <div class="semester-grid" id="semester-grid"></div>
+      </div>
+    </div>
+
+    <!-- DECK MANAGER MODAL -->
+    <div id="deck-modal" class="modal">
+      <div class="modal-content large-modal">
+        <button class="modal-close" id="close-deck-modal">✕</button>
+        <h2>🃏 Indeks Kartu & Deck Manager</h2>
+        <p id="favorite-deck-info" class="modal-subtitle">
+          Klik kartu untuk menambah/hapus dari Deck Favorit
+        </p>
+        <div class="deck-section">
+          <div id="deck-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW TO PLAY MODAL -->
+    <div id="how-to-play-modal" class="modal">
+      <div class="modal-content">
+        <button class="modal-close" id="close-how-to-play">✕</button>
+        <h2>❓ Cara Main</h2>
+        <div class="tutorial-content">
+          <div class="tutorial-section">
+            <h3>📚 Struktur Game</h3>
+            <p>8 Semester × 5 Ronde = 40 pertempuran unik!</p>
+            <ul>
+              <li>Ronde 1-3: Musuh Normal</li>
+              <li>Ronde 4: Musuh Elite</li>
+              <li>Ronde 5: BOSS</li>
+            </ul>
+          </div>
+          <div class="tutorial-section">
+            <h3>🃏 Weighted Card System</h3>
+            <p>Setiap turn, 5 kartu diambil acak dari koleksi kamu.</p>
+            <ul>
+              <li>
+                <strong>Deck Favorit (5 kartu):</strong> Bobot 10× lebih sering
+                muncul
+              </li>
+              <li>
+                <strong>Kartu Lain:</strong> Bobot 1× (jarang tapi bisa muncul)
+              </li>
+            </ul>
+          </div>
+          <div class="tutorial-section">
+            <h3>⚡ Stamina (SKS)</h3>
+            <p>Stamina = energi untuk main kartu. Reset setiap turn.</p>
+            <ul>
+              <li>Level 1-3: 3 Stamina</li>
+              <li>Level 4-7: 4 Stamina</li>
+              <li>Level 8+: 5 Stamina</li>
+            </ul>
+          </div>
+          <div class="tutorial-section">
+            <h3>🛡️ Shield</h3>
+            <p>Shield bersifat PERMANEN dan terakumulasi!</p>
+          </div>
+          <div class="tutorial-section">
+            <h3>💥 Critical Hit</h3>
+            <p>Setiap serangan punya 20% chance untuk CRITICAL!</p>
+            <ul>
+              <li>Critical = 2x damage + screen shake</li>
+              <li>Ditandai dengan efek kilat kuning</li>
+            </ul>
+          </div>
+          <div class="tutorial-section">
+            <h3>🔊 Sound Effects</h3>
+            <p>Efek suara untuk setiap kartu (berdasarkan tipe).</p>
+          </div>
+          <div class="tutorial-section">
+            <h3>🏆 Rewards</h3>
+            <ul>
+              <li>Normal: 10% chance kartu baru</li>
+              <li>Elite: 25-40% chance kartu baru</li>
+              <li>BOSS: 100% DIJAMIN kartu baru!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOM ALERT MODAL -->
+    <div id="custom-alert-modal" class="modal alert-modal">
+      <div class="modal-content">
+        <h2 id="custom-alert-title">Pemberitahuan</h2>
+        <p id="custom-alert-message" class="modal-subtitle">
+          Pesan alert disini...
+        </p>
+        <button id="custom-alert-ok" class="menu-btn primary">OK</button>
+      </div>
+    </div>
+
+    <!-- CUSTOM CONFIRM MODAL -->
+    <div id="custom-confirm-modal" class="modal alert-modal">
+      <div class="modal-content">
+        <h2 id="custom-confirm-title">Konfirmasi</h2>
+        <p id="custom-confirm-message" class="modal-subtitle">Yakin?</p>
+        <div class="confirm-buttons">
+          <button id="custom-confirm-cancel" class="menu-btn secondary">
+            Batal
+          </button>
+          <button id="custom-confirm-yes" class="menu-btn primary">Ya</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/structures/Stack.js"></script>
+    <script src="js/structures/Queue.js"></script>
+    <script src="js/classes/Card.js"></script>
+    <script src="js/classes/MakhlukHidup.js"></script>
+    <script src="js/classes/Mahasiswa.js"></script>
+    <script src="js/classes/Masalah.js"></script>
+    <script src="js/data/cards.js"></script>
+    <script src="js/data/items.js"></script>
+    <script src="js/data/semesters.js"></script>
+    <script src="js/game/AuthSystem.js"></script>
+    <script src="js/game/PlayerProgression.js"></script>
+    <script src="js/game/SoundSystem.js"></script>
+    <script src="js/game/WeightedBattleSystem.js"></script>
+    <script src="js/game/GameManagerV2.js"></script>
+    <script src="cheat.js"></script>
+    <script>
+      // Initialize game
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("🎓 Survival Mahasiswa v3.0 - 8 Semester Edition");
+        game = new GameManager();
+      });
+    </script>
+  </body>
+</html>

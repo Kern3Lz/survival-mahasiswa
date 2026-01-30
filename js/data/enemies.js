@@ -1,0 +1,355 @@
+/**
+ * ENEMIES DATA - Balanced Stats
+ */
+const ENEMIES_DATA = {
+  stage1: {
+    name: "Semester Awal",
+    description: "Perkenalan dengan dunia perkuliahan",
+    enemies: [
+      {
+        nama: "Kakak Tingkat Reseh",
+        max_sanity: 25,
+        base_attack: 4,
+        tipe_masalah: Masalah.TIPE_MASALAH.SOSIAL,
+        sprite: "😤",
+        exp_reward: 15,
+        drop_item: ITEMS_DATA.kopiSachet,
+        attack_patterns: [
+          {
+            id: "bully",
+            name: "Bully",
+            damage: 1.0,
+            chance: 0.7,
+            message: "{enemy} mengejek!",
+          },
+          {
+            id: "heavy",
+            name: "Sarkasme",
+            damage: 1.3,
+            chance: 0.3,
+            message: "{enemy} menyindir!",
+          },
+        ],
+      },
+      {
+        nama: "Tugas Makalah",
+        max_sanity: 30,
+        base_attack: 5,
+        tipe_masalah: Masalah.TIPE_MASALAH.TUGAS,
+        sprite: "📄",
+        exp_reward: 20,
+        drop_item: ITEMS_DATA.indomie,
+        attack_patterns: [
+          {
+            id: "deadline",
+            name: "Deadline",
+            damage: 1.0,
+            chance: 0.6,
+            message: "{enemy} mendekat!",
+          },
+          {
+            id: "revision",
+            name: "Revisi",
+            damage: 1.4,
+            chance: 0.4,
+            message: "{enemy} minta revisi!",
+          },
+        ],
+      },
+      {
+        nama: "Jam Kuliah Pagi",
+        max_sanity: 22,
+        base_attack: 6,
+        tipe_masalah: Masalah.TIPE_MASALAH.TUGAS,
+        sprite: "⏰",
+        exp_reward: 18,
+        drop_item: ITEMS_DATA.kopiSachet,
+        attack_patterns: [
+          {
+            id: "alarm",
+            name: "Alarm",
+            damage: 1.0,
+            chance: 0.5,
+            message: "{enemy} berbunyi!",
+          },
+          {
+            id: "sleepy",
+            name: "Ngantuk",
+            damage: 1.5,
+            chance: 0.5,
+            message: "{enemy} bikin ngantuk!",
+          },
+        ],
+      },
+    ],
+    boss: {
+      nama: "UTS Mendadak",
+      max_sanity: 60,
+      base_attack: 7,
+      tipe_masalah: Masalah.TIPE_MASALAH.TUGAS,
+      sprite: "📋",
+      isBoss: true,
+      exp_reward: 80,
+      drop_item: ITEMS_DATA.nasiPadang,
+      attack_patterns: [
+        {
+          id: "soal",
+          name: "Soal Sulit",
+          damage: 1.0,
+          chance: 0.5,
+          message: "{enemy} melontarkan soal!",
+        },
+        {
+          id: "essay",
+          name: "Essay Panjang",
+          damage: 1.3,
+          chance: 0.3,
+          message: "{enemy} minta essay!",
+        },
+        {
+          id: "blank",
+          name: "Mendadak Blank",
+          damage: 1.8,
+          chance: 0.2,
+          message: "⚠️ {enemy} bikin BLANK!",
+        },
+      ],
+    },
+  },
+  stage2: {
+    name: "Semester Tengah",
+    description: "Grinding tugas dan project",
+    enemies: [
+      {
+        nama: "Project Kelompok",
+        max_sanity: 40,
+        base_attack: 7,
+        tipe_masalah: Masalah.TIPE_MASALAH.SOSIAL,
+        sprite: "👻",
+        exp_reward: 30,
+        drop_item: ITEMS_DATA.kopiSusu,
+        attack_patterns: [
+          {
+            id: "afk",
+            name: "Teman AFK",
+            damage: 1.0,
+            chance: 0.5,
+            message: "{enemy}: Teman AFK!",
+          },
+          {
+            id: "blame",
+            name: "Saling Salahkan",
+            damage: 1.4,
+            chance: 0.5,
+            message: "{enemy}: Disalahin!",
+          },
+        ],
+      },
+      {
+        nama: "Laptop Kentang",
+        max_sanity: 35,
+        base_attack: 6,
+        tipe_masalah: Masalah.TIPE_MASALAH.TEKNIS,
+        sprite: "💻",
+        exp_reward: 28,
+        drop_item: ITEMS_DATA.indomie,
+        attack_patterns: [
+          {
+            id: "lag",
+            name: "Lag",
+            damage: 1.0,
+            chance: 0.6,
+            message: "{enemy} nge-lag!",
+          },
+          {
+            id: "crash",
+            name: "Crash",
+            damage: 1.6,
+            chance: 0.4,
+            message: "{enemy} CRASH!",
+          },
+        ],
+      },
+      {
+        nama: "Wi-Fi Kampus Lemot",
+        max_sanity: 30,
+        base_attack: 8,
+        tipe_masalah: Masalah.TIPE_MASALAH.TEKNIS,
+        sprite: "📶",
+        exp_reward: 25,
+        drop_item: ITEMS_DATA.kopiSachet,
+        attack_patterns: [
+          {
+            id: "dc",
+            name: "Disconnect",
+            damage: 1.0,
+            chance: 0.5,
+            message: "{enemy} putus!",
+          },
+          {
+            id: "timeout",
+            name: "Timeout",
+            damage: 1.5,
+            chance: 0.5,
+            message: "{enemy} timeout!",
+          },
+        ],
+      },
+    ],
+    boss: {
+      nama: "Proposal Ditolak",
+      max_sanity: 90,
+      base_attack: 10,
+      tipe_masalah: Masalah.TIPE_MASALAH.DOSEN,
+      sprite: "❌",
+      isBoss: true,
+      exp_reward: 150,
+      drop_item: ITEMS_DATA.seblak,
+      attack_patterns: [
+        {
+          id: "tolak",
+          name: "Ditolak",
+          damage: 1.0,
+          chance: 0.4,
+          message: "{enemy}: DITOLAK!",
+        },
+        {
+          id: "revisi",
+          name: "Revisi Total",
+          damage: 1.4,
+          chance: 0.4,
+          message: "{enemy}: REVISI TOTAL!",
+        },
+        {
+          id: "ulang",
+          name: "Ulang Dari Awal",
+          damage: 2.0,
+          chance: 0.2,
+          message: "⚠️ {enemy}: ULANGI DARI AWAL!",
+        },
+      ],
+    },
+  },
+  stage3: {
+    name: "Semester Akhir",
+    description: "Perjuangan menuju wisuda",
+    enemies: [
+      {
+        nama: "Revisi Bab 4",
+        max_sanity: 50,
+        base_attack: 9,
+        tipe_masalah: Masalah.TIPE_MASALAH.TUGAS,
+        sprite: "📝",
+        exp_reward: 45,
+        drop_item: ITEMS_DATA.espressoShot,
+        attack_patterns: [
+          {
+            id: "typo",
+            name: "Typo",
+            damage: 1.0,
+            chance: 0.5,
+            message: "{enemy}: Ada typo!",
+          },
+          {
+            id: "format",
+            name: "Format Salah",
+            damage: 1.5,
+            chance: 0.5,
+            message: "{enemy}: Format salah!",
+          },
+        ],
+      },
+      {
+        nama: "Admin Birokrasi",
+        max_sanity: 45,
+        base_attack: 10,
+        tipe_masalah: Masalah.TIPE_MASALAH.ADMIN,
+        sprite: "🏛️",
+        exp_reward: 40,
+        drop_item: ITEMS_DATA.nasiPadang,
+        attack_patterns: [
+          {
+            id: "antri",
+            name: "Antri Panjang",
+            damage: 1.0,
+            chance: 0.5,
+            message: "{enemy}: Antri lama!",
+          },
+          {
+            id: "berkas",
+            name: "Berkas Kurang",
+            damage: 1.6,
+            chance: 0.5,
+            message: "{enemy}: Berkas kurang!",
+          },
+        ],
+      },
+      {
+        nama: "Cek Plagiasi",
+        max_sanity: 48,
+        base_attack: 11,
+        tipe_masalah: Masalah.TIPE_MASALAH.TUGAS,
+        sprite: "🔍",
+        exp_reward: 50,
+        drop_item: ITEMS_DATA.seblak,
+        attack_patterns: [
+          {
+            id: "scan",
+            name: "Scanning",
+            damage: 1.0,
+            chance: 0.5,
+            message: "{enemy} scanning!",
+          },
+          {
+            id: "detect",
+            name: "Terdeteksi!",
+            damage: 1.8,
+            chance: 0.5,
+            message: "{enemy}: PLAGIAT!",
+          },
+        ],
+      },
+    ],
+    boss: {
+      nama: "Dosen Penguji Sidang",
+      max_sanity: 120,
+      base_attack: 12,
+      tipe_masalah: Masalah.TIPE_MASALAH.DOSEN,
+      sprite: "👨‍🏫",
+      isBoss: true,
+      exp_reward: 300,
+      drop_item: ITEMS_DATA.vitaminC,
+      attack_patterns: [
+        {
+          id: "tanya",
+          name: "Pertanyaan",
+          damage: 1.0,
+          chance: 0.3,
+          message: "{enemy} bertanya!",
+        },
+        {
+          id: "kritik",
+          name: "Kritik Pedas",
+          damage: 1.4,
+          chance: 0.4,
+          message: "{enemy} mengkritik!",
+        },
+        {
+          id: "jebak",
+          name: "Jebakan!",
+          damage: 2.2,
+          chance: 0.3,
+          message: "⚠️ {enemy}: PERTANYAAN JEBAKAN!",
+        },
+      ],
+    },
+  },
+};
+
+function getStageData(stageNum) {
+  return ENEMIES_DATA[`stage${stageNum}`] || null;
+}
+
+function createEnemy(config, stageNum) {
+  return new Masalah({ ...config, stage: stageNum });
+}

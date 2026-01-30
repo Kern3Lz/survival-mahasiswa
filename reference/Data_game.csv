@@ -1,0 +1,41 @@
+ID;Semester;Round;Nama_Musuh;Tipe;HP;Damage;XP_Reward
+E_01_01;1;1;Maba Nyasar;Normal;25;5;20
+E_01_02;1;2;Kuis Dadakan;Normal;30;6;25
+E_01_03;1;3;Senior Galak;Normal;35;7;30
+E_01_04;1;4;Tugas Kelompok;Elite;45;9;40
+E_01_05;1;5;UAS Kalkulus;BOSS;80;12;100
+E_02_01;2;1;Rapat Organisasi;Normal;40;8;35
+E_02_02;2;2;Dana Usaha (Danus);Normal;45;9;40
+E_02_03;2;3;Jadwal Bentrok;Normal;50;10;45
+E_02_04;2;4;Asisten Lab;Elite;65;12;60
+E_02_05;2;5;Laporan Praktikum;BOSS;110;15;150
+E_03_01;3;1;Begadang 2 Hari;Normal;60;11;50
+E_03_02;3;2;Laptop Nge-Lag;Normal;65;12;55
+E_03_03;3;3;Internet Down;Normal;70;13;60
+E_03_04;3;4;Matkul Mengulang;Elite;90;16;80
+E_03_05;3;5;Dosen Killer;BOSS;150;20;200
+E_04_01;4;1;Proposal Magang;Normal;80;14;70
+E_04_02;4;2;Interview Awkward;Normal;85;15;75
+E_04_03;4;3;Revisi Laporan KP;Normal;90;16;80
+E_04_04;4;4;Pembimbing Sibuk;Elite;115;19;100
+E_04_05;4;5;Sidang PKL;BOSS;190;24;250
+E_05_01;5;1;Lokasi KKN Angker;Normal;100;17;90
+E_05_02;5;2;Proker Gagal;Normal;105;18;95
+E_05_03;5;3;Cinlok Bertepuk Sebelah Tangan;Normal;110;19;100
+E_05_04;5;4;Kepala Desa;Elite;140;22;130
+E_05_05;5;5;Laporan KKN;BOSS;230;28;300
+E_06_01;6;1;Cari Judul Skripsi;Normal;120;20;110
+E_06_02;6;2;Judul Ditolak;Normal;125;21;115
+E_06_03;6;3;Ganti Judul Lagi;Normal;130;22;120
+E_06_04;6;4;Dosen Ghosting;Elite;165;26;150
+E_06_05;6;5;Seminar Proposal (Sempro);BOSS;270;32;350
+E_07_01;7;1;Olah Data Error;Normal;140;23;130
+E_07_02;7;2;Revisi Bab 1-3;Normal;145;24;135
+E_07_03;7;3;File Skripsi Corrupt;Normal;150;25;140
+E_07_04;7;4;Revisi Mayor;Elite;190;30;180
+E_07_05;7;5;Sidang Tertutup;BOSS;310;36;400
+E_08_01;8;1;Salah Format Penulisan;Normal;160;26;150
+E_08_02;8;2;Tanda Tangan Hilang;Normal;165;27;155
+E_08_03;8;3;Revisi H-1;Normal;170;28;160
+E_08_04;8;4;Penguji Tamu;Elite;215;34;200
+E_08_05;8;5;SIDANG SKRIPSI AKHIR;BOSS;350;40;500
