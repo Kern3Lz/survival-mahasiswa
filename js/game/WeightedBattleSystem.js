@@ -882,7 +882,13 @@ class WeightedBattleSystem {
 
   updateHandDisplay() {
     const handContainer = document.getElementById("card-hand");
-    if (!handContainer) return;
+    if (!handContainer) {
+      console.error("❌ Card Hand container not found!");
+      return;
+    }
+
+    // Debug log
+    console.log(`🃏 Rendering hand: ${this.hand.length} cards`);
 
     handContainer.innerHTML = this.hand
       .map((card, index) => {

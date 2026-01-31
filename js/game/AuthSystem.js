@@ -98,7 +98,7 @@ class AuthSystem {
 
     localStorage.setItem(
       this.#sessionKey,
-      JSON.stringify({ username, isGuest: false })
+      JSON.stringify({ username, isGuest: false }),
     );
     return {
       success: true,
@@ -117,7 +117,7 @@ class AuthSystem {
 
     localStorage.setItem(
       this.#sessionKey,
-      JSON.stringify({ username: guestName, isGuest: true })
+      JSON.stringify({ username: guestName, isGuest: true }),
     );
     return {
       success: true,
@@ -154,16 +154,18 @@ class AuthSystem {
   getStarterCardIds() {
     // Balanced starter: 2x Strike, 2x Block, 2x QuickJab, 2x Defend, 1x Focus, 1x Heal
     return [
-      "strike",
-      "strike",
-      "block",
-      "block",
-      "quickJab",
-      "quickJab",
-      "defend",
-      "defend",
-      "focus",
-      "heal",
+      "bukuPaket",
+      "bukuPaket",
+      "tarikNapas",
+      "tarikNapas",
+      "modalNekat",
+      "modalNekat",
+      "airMineral",
+      "makanBurjo",
+      "catatanKuliah",
+      "tanyaTeman",
+      "pinjamCharger",
+      "dengerinMusik",
     ];
   }
 
@@ -217,7 +219,7 @@ class AuthSystem {
     if (!this.#currentUser) return;
     this.#currentUser.data.maxEnergy = Math.min(
       5,
-      this.#currentUser.data.maxEnergy + 1
+      this.#currentUser.data.maxEnergy + 1,
     );
     if (!this.#currentUser.isGuest) {
       this.saveProgress();

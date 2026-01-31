@@ -22,16 +22,15 @@ class GameManager {
     this.setupEventListeners();
     this.createParticles();
 
-    // Load player progression
-    if (!playerProgression.load()) {
-      playerProgression.initializeStarterCards();
-    }
-
     // Check if user is logged in
     if (authSystem.isLoggedIn) {
+      this.player = authSystem.currentUser;
+      playerProgression.loadProfile(this.player.username);
       this.showScreen("main-menu");
       this.updateMainMenuUI();
     } else {
+      // Load default guest profile just in case, but show login
+      playerProgression.loadProfile("guest");
       this.showScreen("login-screen");
     }
 
@@ -151,7 +150,23 @@ class GameManager {
     const password = document.getElementById("login-password").value;
 
     const result = authSystem.register(username, password);
-    this.showAuthMessage(result.message, result.success);
+
+    if (result.success) {
+      this.showAuthMessage("Registrasi Berhasil! Masuk...", true);
+
+      const loginResult = authSystem.login(username, password);
+
+      if (loginResult.success) {
+        this.player = loginResult.user;
+        playerProgression.loadProfile(this.player.username);
+        this.showScreen("main-menu");
+        this.updateMainMenuUI();
+      } else {
+        this.showAuthMessage("Auto-login gagal: " + loginResult.message, false);
+      }
+    } else {
+      this.showAuthMessage(result.message, false);
+    }
   }
 
   handleGuestLogin() {
@@ -161,12 +176,8 @@ class GameManager {
     if (result.success) {
       this.player = result.user;
 
-      // Initialize guest progression manually (since no save file)
-      playerProgression.reset();
-      playerProgression.progress = {
-        ...playerProgression.progress,
-        username: this.player.username,
-      };
+      // Initialize guest progression
+      playerProgression.loadProfile(this.player.username);
 
       this.showScreen("main-menu");
       this.updateMainMenuUI();
@@ -294,9 +305,13 @@ class GameManager {
     this.currentSemester = semesterNum;
     this.currentRound = 1;
 
-    // Create player character
-    if (!this.player) {
-      this.player = new Mahasiswa("Mahasiswa", "teknik");
+    // Create player character if needed or if it's currently just a plain auth object
+    if (!this.player || typeof this.player.getFullInfo !== "function") {
+      const savedChar = this.player?.data?.lastCharacter;
+      const name = savedChar?.nama || this.player?.username || "Mahasiswa";
+      const jurusan = savedChar?.jurusan || "teknik";
+
+      this.player = new Mahasiswa(name, jurusan);
       this.player.max_sanity = playerProgression.getMaxSanity();
       this.player.curr_sanity = this.player.max_sanity;
     } else {

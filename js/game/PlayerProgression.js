@@ -25,7 +25,8 @@ const LEVEL_TABLE = [
 ];
 
 class PlayerProgression {
-  #storageKey = "survival_mahasiswa_progression";
+  #baseStorageKey = "survival_mahasiswa_progression";
+  #currentUsername = "guest";
 
   constructor() {
     this.currentXP = 0;
@@ -331,6 +332,10 @@ class PlayerProgression {
   // PERSISTENCE
   // ============================================
 
+  get storageKey() {
+    return `${this.#baseStorageKey}_${this.#currentUsername}`;
+  }
+
   save() {
     const data = {
       currentXP: this.currentXP,
@@ -341,12 +346,25 @@ class PlayerProgression {
       highestSemester: this.highestSemester,
       completedSemesters: this.completedSemesters,
     };
-    localStorage.setItem(this.#storageKey, JSON.stringify(data));
+    console.log(`💾 Saving progression to ${this.storageKey}`, data);
+    localStorage.setItem(this.storageKey, JSON.stringify(data));
+  }
+
+  loadProfile(username) {
+    this.#currentUsername = username || "guest";
+    console.log(
+      `📂 Loading profile for: ${this.#currentUsername} (Key: ${this.storageKey})`,
+    );
+    if (!this.load()) {
+      console.log("🆕 New profile, initializing starter cards.");
+      this.reset();
+      this.save();
+    }
   }
 
   load() {
     try {
-      const data = JSON.parse(localStorage.getItem(this.#storageKey));
+      const data = JSON.parse(localStorage.getItem(this.storageKey));
       if (data) {
         this.currentXP = data.currentXP || 0;
         this.currentLevel = data.currentLevel || 1;
